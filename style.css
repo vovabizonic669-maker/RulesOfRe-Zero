@@ -108,12 +108,33 @@ body {
 }
 
 /* TOC */
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 120px 20px 20px 20px; /* ВАЖНО: отступ сверху */
+}
+
+/* Фикс кнопок сверху */
 .toc {
-    background: #1e222b;
-    border-radius: 24px;
-    padding: 25px 30px;
-    margin-bottom: 40px;
-    border-left: 6px solid #c52b3a;
+    position: fixed; /* фиксируем */
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 9999;
+
+    background-color: var(--nav-bg);
+    padding: 12px 20px;
+
+    box-shadow: 0 4px 15px var(--shadow);
+    border-bottom: 2px solid var(--accent);
+}
+
+/* чтобы кнопки не растягивались криво */
+.toc-grid {
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .toc h2 {
