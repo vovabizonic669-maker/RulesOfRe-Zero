@@ -9,10 +9,53 @@ body {
     font-family: 'Inter', sans-serif;
     color: #e5e5e5;
     line-height: 1.6;
-    padding: 20px;
+    padding: 0; /* убираем отступы, чтобы панель была вплотную к краю */
     transition: background 0.3s, color 0.2s;
 }
 
+/* Закреплённая панель навигации — в самом верху, без закруглений */
+.toc {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #1e222b;
+    padding: 12px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s, box-shadow 0.3s;
+    border-radius: 0; /* убираем скругление */
+    width: 100%;
+}
+
+/* Горизонтальное меню ссылок */
+.toc-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.toc-grid a {
+    color: #b9c2d4;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 16px;
+    background: #2a2f3b;
+    border-radius: 40px;
+    transition: 0.2s;
+    font-size: 0.9rem;
+    border: 1px solid #3d424f;
+    white-space: nowrap;
+}
+
+.toc-grid a:hover {
+    background: #c52b3a;
+    color: white;
+    border-color: #c52b3a;
+}
+
+/* Контейнер с отступом сверху, чтобы контент не уходил под панель */
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -22,6 +65,7 @@ body {
     overflow: hidden;
     padding: 40px 35px;
     transition: background 0.3s, box-shadow 0.3s;
+    margin-top: 20px; /* отступ от панели */
 }
 
 /* Header */
@@ -107,50 +151,10 @@ body {
     border-color: #c52b3a;
 }
 
-/* Закреплённая панель навигации */
-.toc {
-    position: sticky;
-    top: 20px;
-    z-index: 100;
-    background: #1e222b;
-    border-radius: 60px;
-    padding: 12px 20px;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s, box-shadow 0.3s;
-}
-
-/* Горизонтальное меню ссылок */
-.toc-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-}
-
-.toc-grid a {
-    color: #b9c2d4;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 6px 16px;
-    background: #2a2f3b;
-    border-radius: 40px;
-    transition: 0.2s;
-    font-size: 0.9rem;
-    border: 1px solid #3d424f;
-    white-space: nowrap;
-}
-
-.toc-grid a:hover {
-    background: #c52b3a;
-    color: white;
-    border-color: #c52b3a;
-}
-
 /* Отступ для заголовков разделов, чтобы панель не перекрывала их при прокрутке */
 .rule-section {
     margin-bottom: 45px;
-    scroll-margin-top: 100px;
+    scroll-margin-top: 80px; /* чуть больше высоты панели */
 }
 
 .section-header {
@@ -436,6 +440,7 @@ body.light-theme .footer-note {
 @media (max-width: 600px) {
     .container {
         padding: 25px 18px;
+        margin-top: 10px;
     }
     .clan-header {
         flex-direction: column;
@@ -452,11 +457,6 @@ body.light-theme .footer-note {
     }
     .sub-rule {
         margin-left: 20px;
-    }
-    .toc {
-        top: 10px;
-        border-radius: 40px;
-        padding: 10px 12px;
     }
     .toc-grid a {
         font-size: 0.8rem;
