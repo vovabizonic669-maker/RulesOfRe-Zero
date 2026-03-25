@@ -16,7 +16,7 @@ body {
     padding-left: 80px;
 }
 
-/* ========== БОКОВАЯ ПАНЕЛЬ — ЗАКРЕПЛЕНА, С ОТСТУПАМИ ========== */
+/* ========== БОКОВАЯ ПАНЕЛЬ (закреплена, с отступами) ========== */
 .side-nav {
     position: fixed;
     left: 0;
@@ -91,7 +91,7 @@ body {
     border-left: 3px solid #c52b3a;
 }
 
-/* Контейнер */
+/* Контейнер — без изменений */
 .container {
     max-width: 1000px;
     margin: 20px auto 20px auto;
@@ -103,7 +103,6 @@ body {
     transition: background 0.3s, box-shadow 0.3s;
 }
 
-/* Анимация иконки клана (простое вращение при загрузке) */
 .clan-icon {
     background: #1e2128;
     border-radius: 50%;
@@ -117,42 +116,6 @@ body {
     color: #c52b3a;
     border: 3px solid #c52b3a;
     box-shadow: 0 0 20px #c52b3a55;
-    transition: transform 0.5s ease;
-    transform: rotate(0deg);
-}
-
-/* Вращение при загрузке страницы через небольшой хак */
-body:not(.loaded) .clan-icon {
-    animation: spinOnce 0.8s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
-}
-
-@keyframes spinOnce {
-    0% { transform: rotate(0deg) scale(0.8); opacity: 0; }
-    60% { transform: rotate(360deg) scale(1.05); }
-    100% { transform: rotate(360deg) scale(1); opacity: 1; }
-}
-
-/* Простое появление контента */
-.container {
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out forwards;
-    animation-delay: 0.1s;
-}
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
-/* Заголовок (без сложных анимаций) */
-.clan-title h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #f0e6d2, #c0b9a8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1.2;
-    margin: 0;
 }
 
 .clan-header {
@@ -168,6 +131,16 @@ body:not(.loaded) .clan-icon {
 
 .clan-title {
     flex: 1;
+}
+
+.clan-title h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #f0e6d2, #c0b9a8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
 }
 
 .clan-title p {
