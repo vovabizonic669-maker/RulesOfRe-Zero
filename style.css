@@ -1,6 +1,6 @@
-
 html {
     scroll-behavior: smooth;
+}
 
 html, body {
     margin: 0;
@@ -11,9 +11,9 @@ body {
     background: #0b0c10;
     font-family: 'Inter', sans-serif;
     color: #e5e5e5;
-    line-height: 1.6;
+    line-height: 1.5; /* уменьшил межстрочник */
     transition: background 0.3s, color 0.2s;
-    padding-left: 80px; /* место для боковой панели */
+    padding-left: 70px; /* точно под ширину панели */
 }
 
 /* ========== БОКОВАЯ ПАНЕЛЬ ========== */
@@ -26,6 +26,7 @@ body {
     background: rgba(30, 34, 43, 0.95);
     backdrop-filter: blur(8px);
     border-right: 1px solid #2a2f3a;
+    border-radius: 0 20px 20px 0; /* закругление правого края */
     transition: width 0.3s ease;
     z-index: 1000;
     overflow-y: auto;
@@ -40,11 +41,11 @@ body {
 
 .side-nav ul {
     list-style: none;
-    padding: 20px 0;
+    padding: 12px 0; /* уменьшил вертикальные отступы */
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px; /* уменьшил расстояние между пунктами */
 }
 
 .side-nav li {
@@ -55,11 +56,11 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 10px 16px;
+    padding: 8px 16px; /* уменьшил вертикальный паддинг */
     color: #b9c2d4;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem; /* чуть меньше */
     transition: all 0.2s;
     border-radius: 0 24px 24px 0;
     white-space: nowrap;
@@ -68,7 +69,7 @@ body {
 .side-nav a i {
     width: 24px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #c52b3a;
 }
 
@@ -87,26 +88,26 @@ body {
     border-left: 3px solid #c52b3a;
 }
 
-/* Контейнер смещён вправо */
+/* Контейнер – компактнее */
 .container {
     max-width: 1000px;
-    margin: 20px auto 20px auto;
+    margin: 16px auto 16px auto;
     background: #15181e;
-    border-radius: 32px;
+    border-radius: 28px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #2a2f3a inset;
     overflow: hidden;
-    padding: 40px 35px;
+    padding: 24px 24px; /* уменьшил отступы */
     transition: background 0.3s, box-shadow 0.3s;
 }
 
-/* Остальные стили (классные) без изменений, кроме адаптива для панели */
+/* Шапка клана – компактнее */
 .clan-header {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
     border-bottom: 2px solid #9b1d2c;
-    padding-bottom: 25px;
+    padding-bottom: 18px;
     flex-wrap: wrap;
     justify-content: space-between;
 }
@@ -114,39 +115,36 @@ body {
 .clan-icon {
     background: #1e2128;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 42px;
+    font-size: 36px;
     font-weight: 800;
     color: #c52b3a;
     border: 3px solid #c52b3a;
-    box-shadow: 0 0 20px #c52b3a55;
-}
-
-.clan-title {
-    flex: 1;
+    box-shadow: 0 0 16px #c52b3a55;
 }
 
 .clan-title h1 {
-    font-size: 2.5rem;
+    font-size: 1.9rem; /* уменьшил */
     font-weight: 800;
     letter-spacing: -0.5px;
     background: linear-gradient(135deg, #f0e6d2, #c0b9a8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.2;
+    margin: 0 0 4px 0;
 }
 
 .clan-title p {
     color: #a0a8b7;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 8px;
+    gap: 8px;
+    margin: 0;
 }
 
 .clan-title p i {
@@ -162,15 +160,15 @@ body {
     background: #2a2f3b;
     border: none;
     color: #e5e5e5;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    padding: 8px 18px;
+    padding: 6px 14px;
     border-radius: 40px;
     cursor: pointer;
     transition: all 0.2s;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     font-family: inherit;
     border: 1px solid #3d424f;
 }
@@ -182,47 +180,50 @@ body {
 }
 
 .rule-section {
-    margin-bottom: 45px;
+    margin-bottom: 32px;
     scroll-margin-top: 20px;
 }
 
 .section-header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 12px;
+    margin-bottom: 18px;
     border-bottom: 1px solid #2f3542;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
 }
 
 .section-icon {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     background: #1e2128;
-    border-radius: 18px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 20px;
     color: #c52b3a;
     border: 1px solid #3a4050;
 }
 
 .section-header h2 {
-    font-size: 2rem;
+    font-size: 1.5rem; /* уменьшил */
     font-weight: 700;
     color: #f0e6d2;
+    margin: 0;
 }
 
 .rules-list {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .rule-item {
     background: #1a1e27;
-    margin-bottom: 12px;
-    padding: 18px 25px;
-    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 12px 18px; /* уменьшил */
+    border-radius: 18px;
     border-left: 5px solid #2f3542;
     transition: 0.2s;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -236,33 +237,34 @@ body {
 .rule-number {
     font-weight: 700;
     color: #c52b3a;
-    font-size: 1.1rem;
+    font-size: 1rem;
     display: inline-block;
-    margin-right: 10px;
-    min-width: 45px;
+    margin-right: 8px;
+    min-width: 40px;
 }
 
 .rule-text {
     color: #d5deec;
+    font-size: 0.9rem;
 }
 
 .punishment {
-    margin-top: 10px;
-    padding: 10px 16px;
+    margin-top: 8px;
+    padding: 6px 12px;
     background: #252b36;
-    border-radius: 14px;
-    font-size: 0.95rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
     border-left: 4px solid #b38b5c;
     color: #d6c6b0;
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
 }
 
 .punishment i {
     color: #b38b5c;
-    font-size: 1.2rem;
-    margin-top: 3px;
+    font-size: 1rem;
+    margin-top: 2px;
 }
 
 .punishment strong {
@@ -271,72 +273,74 @@ body {
 }
 
 .edited-note {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: #9099aa;
-    margin-top: 8px;
+    margin-top: 6px;
     font-style: italic;
     background: #232732;
-    padding: 4px 12px;
+    padding: 2px 10px;
     border-radius: 20px;
     display: inline-block;
 }
 
 .edited-note i {
     margin-right: 5px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #a6b1c2;
 }
 
 .sub-rule {
-    margin-left: 45px;
-    margin-top: 10px;
-    padding: 14px 20px;
+    margin-left: 35px;
+    margin-top: 8px;
+    padding: 10px 16px;
     background: #1f232e;
-    border-radius: 16px;
+    border-radius: 14px;
     border-left: 3px solid #3f4656;
 }
 
 .expiration-box {
     background: #1a1f2b;
-    border-radius: 24px;
-    padding: 30px 30px;
-    margin-top: 40px;
+    border-radius: 20px;
+    padding: 20px 24px;
+    margin-top: 32px;
     border: 2px dashed #9b1d2c;
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
 }
 
 .exp-item {
-    flex: 1 1 250px;
+    flex: 1 1 240px;
     background: #252c38;
-    padding: 20px;
-    border-radius: 20px;
+    padding: 16px;
+    border-radius: 18px;
     border-top: 5px solid #c52b3a;
 }
 
 .exp-item h3 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #ffd6b3;
-    margin-bottom: 15px;
+    margin: 0 0 8px 0;
 }
 
 .exp-item p {
     color: #b9c8e0;
+    margin: 0;
+    font-size: 0.85rem;
 }
 
 hr {
     border: none;
     height: 2px;
     background: linear-gradient(90deg, #2f3542, #9b1d2c, #2f3542);
-    margin: 35px 0 20px;
+    margin: 28px 0 16px;
 }
 
 .footer-note {
     text-align: center;
     color: #7f8a9e;
-    font-size: 0.9rem;
-    margin-top: 20px;
+    font-size: 0.8rem;
+    margin-top: 16px;
 }
 
 /* ========== СВЕТЛАЯ ТЕМА ========== */
@@ -480,12 +484,13 @@ body.light-theme .footer-note {
         backdrop-filter: blur(12px);
         border-right: none;
         border-top: 1px solid #2a2f3a;
+        border-radius: 20px 20px 0 0; /* скругление сверху на мобилках */
         transition: none;
         overflow-x: auto;
         white-space: nowrap;
         display: flex;
         justify-content: center;
-        padding: 8px 12px;
+        padding: 6px 12px;
         box-shadow: 0 -2px 12px rgba(0,0,0,0.3);
     }
     .side-nav:hover {
@@ -493,8 +498,8 @@ body.light-theme .footer-note {
     }
     .side-nav ul {
         flex-direction: row;
-        padding: 0;
-        gap: 6px;
+        padding: 6px 0;
+        gap: 4px;
     }
     .side-nav a {
         padding: 6px 12px;
@@ -509,7 +514,8 @@ body.light-theme .footer-note {
         font-size: 1rem;
     }
     .container {
-        margin: 20px 12px 80px 12px;
+        margin: 16px 12px 80px 12px;
+        padding: 20px 16px;
     }
 }
 
