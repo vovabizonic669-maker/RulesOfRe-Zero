@@ -8,7 +8,7 @@ html, body {
 body {
     /* НОВАЯ картинка для фона после заставки */
     background: linear-gradient(0deg, rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                url('https://i.imgur.com/iZ6Qsf4.png') center/cover fixed;
+                url('blob:https://imgur.com/612001b8-ef48-4ab4-b5d3-fb2263673e95') center/cover fixed;
     font-family: 'Inter', sans-serif;
     color: #e5e5e5;
     line-height: 1.6;
