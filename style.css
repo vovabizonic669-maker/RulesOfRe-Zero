@@ -16,6 +16,7 @@ body {
     min-height: 100vh;
     position: relative;
 }
+/* Виньетка (тёмные края) */
 body::before {
     content: '';
     position: fixed;
@@ -27,7 +28,7 @@ body::before {
     pointer-events: none;
     z-index: 1;
 }
-/* Боковая панель */
+/* ========== БОКОВАЯ ПАНЕЛЬ ========== */
 .side-nav {
     position: fixed;
     left: 0;
@@ -44,7 +45,9 @@ body::before {
     white-space: nowrap;
     box-shadow: 2px 0 12px rgba(0,0,0,0.3);
 }
-.side-nav:hover { width: 240px; }
+.side-nav:hover {
+    width: 240px;
+}
 .side-nav ul {
     list-style: none;
     padding: 20px 0;
@@ -53,7 +56,9 @@ body::before {
     flex-direction: column;
     gap: 8px;
 }
-.side-nav li { width: 100%; }
+.side-nav li {
+    width: 100%;
+}
 .side-nav a {
     display: flex;
     align-items: center;
@@ -77,13 +82,15 @@ body::before {
     opacity: 0;
     transition: opacity 0.2s;
 }
-.side-nav:hover a span { opacity: 1; }
+.side-nav:hover a span {
+    opacity: 1;
+}
 .side-nav a:hover {
     background: #c52b3a20;
     color: #ffffff;
     border-left: 3px solid #c52b3a;
 }
-/* Контейнер изначально скрыт, появится после заставки */
+/* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
 .container {
     position: relative;
     z-index: 2;
@@ -96,117 +103,65 @@ body::before {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(197, 43, 58, 0.3);
     overflow: hidden;
     padding: 40px 35px;
-    transition: background 0.3s, box-shadow 0.3s;
+    transition: background 0.3s, box-shadow 0.3s, opacity 0.6s ease, transform 0.6s ease;
     opacity: 0;
     transform: translateY(20px);
-    animation: contentFadeIn 0.8s ease 2.5s forwards, containerGlow 1s ease 2.5s forwards;
 }
-@keyframes contentFadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.container.show {
+    opacity: 1;
+    transform: translateY(0);
 }
-@keyframes containerGlow {
-    0% {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(197, 43, 58, 0);
-    }
-    50% {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #ff6b7c, 0 0 20px rgba(197,43,58,0.6);
-    }
-    100% {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(197, 43, 58, 0.3);
-    }
-}
-/* Заставка */
+/* ===== ЗАСТАВКА ===== */
 .splash {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
-                url('https://i.imgur.com/SeeuWDt.jpeg') center/cover fixed;
+    background: radial-gradient(circle at center, #0a0a12, #010101);
     z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
     opacity: 1;
-    animation: fadeOutSplash 2.5s forwards;
+    visibility: visible;
+}
+.splash.hide {
+    opacity: 0;
+    visibility: hidden;
 }
 .splash-icon {
-    width: 220px;
-    height: 220px;
-    background: rgba(30, 34, 43, 0.85);
-    backdrop-filter: blur(12px);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 4px solid #c52b3a;
-    box-shadow: 0 0 40px rgba(197, 43, 58, 0.6);
-    animation: iconPulse 1s ease-out forwards;
-}
-@keyframes fadeOutSplash {
-    0% { opacity: 1; visibility: visible; }
-    80% { opacity: 1; }
-    100% { opacity: 0; visibility: hidden; }
-}
-@keyframes iconPulse {
-    0% { transform: scale(0.8); opacity: 0; }
-    40% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
-}
-/* Общий стиль для SVG-значков */
-.icon-svg {
-    width: 70%;
-    height: 70%;
-    display: block;
-}
-.icon-svg text {
+    font-size: 120px;
+    font-weight: 800;
     font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    fill: rgba(197, 43, 58, 0.3);  /* полупрозрачные буквы изначально */
-    stroke: #ffaa66;
-    stroke-width: 2;
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    transition: fill 0.3s;
+    color: #c52b3a;
+    text-shadow: 0 0 20px rgba(197,43,58,0.5);
+    background: none;
+    border: none;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    animation: splashGlow 1.2s ease-out forwards;
 }
-/* Анимация для заставки: буквы прорисовываются светом и становятся ярко-красными */
-.splash-icon .icon-svg text {
-    font-size: 90px;
-    stroke-width: 3.5;
-    stroke-dasharray: 420;
-    stroke-dashoffset: 420;
-    animation: drawAndFill 1.2s ease-out forwards;
-}
-/* Анимация для основного значка (начинается после заставки) */
-.clan-icon .icon-svg text {
-    font-size: 60px;
-    stroke-dasharray: 280;
-    stroke-dashoffset: 280;
-    animation: drawAndFill 1s ease-out 2.5s forwards;
-}
-@keyframes drawAndFill {
+@keyframes splashGlow {
     0% {
-        stroke-dashoffset: 420;
-        fill-opacity: 0;
-        stroke-opacity: 0;
+        opacity: 0;
+        transform: scale(0.8);
+        text-shadow: 0 0 0 rgba(197,43,58,0);
     }
-    40% {
-        stroke-dashoffset: 0;
-        stroke-opacity: 1;
-        fill-opacity: 0;
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+        text-shadow: 0 0 30px rgba(197,43,58,0.8);
     }
     100% {
-        stroke-dashoffset: 0;
-        stroke-opacity: 0.8; /* обводка остаётся, но полупрозрачная */
-        fill: #c52b3a;
-        fill-opacity: 1;
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 15px rgba(197,43,58,0.5);
     }
 }
-/* Основной значок (шапка) */
+/* ===== ЗНАЧОК В ШАПКЕ (простой, с бликом) ===== */
 .clan-icon {
     background: #1e2128;
     border-radius: 50%;
@@ -215,24 +170,35 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 42px;
+    font-weight: 800;
+    color: #c52b3a;
     border: 3px solid #c52b3a;
-    position: relative;
-    overflow: hidden;
     box-shadow: 0 0 15px rgba(197, 43, 58, 0.5);
     transition: box-shadow 0.3s;
-    opacity: 0;
-    transform: scale(0.8);
-    animation: iconSpin 0.9s cubic-bezier(0.34, 1.2, 0.64, 1) 2.5s forwards;
-}
-@keyframes iconSpin {
-    0% { transform: rotate(0deg) scale(0.8); opacity: 0; }
-    40% { transform: rotate(360deg) scale(1.2); opacity: 0.8; }
-    100% { transform: rotate(360deg) scale(1); opacity: 1; }
+    position: relative;
+    overflow: hidden;
 }
 .clan-icon:hover {
     box-shadow: 0 0 25px rgba(197, 43, 58, 0.9);
 }
-/* Остальные стили (без изменений) */
+/* Эффект бегущего блика (перелив) */
+.clan-icon::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+/* ===== ОСТАЛЬНЫЕ СТИЛИ (без изменений) ===== */
 .clan-header {
     display: flex;
     align-items: center;
@@ -243,7 +209,9 @@ body::before {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.clan-title { flex: 1; }
+.clan-title {
+    flex: 1;
+}
 .clan-title h1 {
     font-size: 2.5rem;
     font-weight: 800;
@@ -261,8 +229,13 @@ body::before {
     gap: 10px;
     margin-top: 8px;
 }
-.clan-title p i { color: #c52b3a; }
-.theme-switch-wrapper { display: flex; align-items: center; }
+.clan-title p i {
+    color: #c52b3a;
+}
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
 .theme-toggle-btn {
     background: #2a2f3b;
     border: none;
@@ -286,27 +259,40 @@ body::before {
 }
 /* Анимация появления текста */
 @keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-.rule-section, .expiration-box, .footer-note {
+.rule-section,
+.expiration-box,
+.footer-note {
     animation: fadeUp 0.6s ease forwards;
     opacity: 0;
 }
-.rule-section:nth-child(1) { animation-delay: 2.7s; }
-.rule-section:nth-child(2) { animation-delay: 2.8s; }
-.rule-section:nth-child(3) { animation-delay: 2.9s; }
-.rule-section:nth-child(4) { animation-delay: 3.0s; }
-.rule-section:nth-child(5) { animation-delay: 3.1s; }
-.rule-section:nth-child(6) { animation-delay: 3.2s; }
-.rule-section:nth-child(7) { animation-delay: 3.3s; }
-.rule-section:nth-child(8) { animation-delay: 3.4s; }
-.rule-section:nth-child(9) { animation-delay: 3.5s; }
-.rule-section:nth-child(10) { animation-delay: 3.6s; }
-.rule-section:nth-child(11) { animation-delay: 3.7s; }
-.expiration-box { animation-delay: 3.8s; }
-.footer-note { animation-delay: 3.9s; }
-.rule-section { margin-bottom: 45px; scroll-margin-top: 20px; }
+.rule-section:nth-child(1) { animation-delay: 0.2s; }
+.rule-section:nth-child(2) { animation-delay: 0.3s; }
+.rule-section:nth-child(3) { animation-delay: 0.4s; }
+.rule-section:nth-child(4) { animation-delay: 0.5s; }
+.rule-section:nth-child(5) { animation-delay: 0.6s; }
+.rule-section:nth-child(6) { animation-delay: 0.7s; }
+.rule-section:nth-child(7) { animation-delay: 0.8s; }
+.rule-section:nth-child(8) { animation-delay: 0.9s; }
+.rule-section:nth-child(9) { animation-delay: 1.0s; }
+.rule-section:nth-child(10) { animation-delay: 1.1s; }
+.rule-section:nth-child(11) { animation-delay: 1.2s; }
+
+.expiration-box { animation-delay: 1.3s; }
+.footer-note { animation-delay: 1.4s; }
+
+.rule-section {
+    margin-bottom: 45px;
+    scroll-margin-top: 20px;
+}
 .section-header {
     display: flex;
     align-items: center;
@@ -332,7 +318,9 @@ body::before {
     font-weight: 700;
     color: #f0e6d2;
 }
-.rules-list { list-style: none; }
+.rules-list {
+    list-style: none;
+}
 .rule-item {
     background: #1a1e27;
     margin-bottom: 12px;
@@ -354,7 +342,9 @@ body::before {
     margin-right: 10px;
     min-width: 45px;
 }
-.rule-text { color: #d5deec; }
+.rule-text {
+    color: #d5deec;
+}
 .punishment {
     margin-top: 10px;
     padding: 10px 16px;
@@ -372,7 +362,10 @@ body::before {
     font-size: 1.2rem;
     margin-top: 3px;
 }
-.punishment strong { color: #f0c9a7; font-weight: 600; }
+.punishment strong {
+    color: #f0c9a7;
+    font-weight: 600;
+}
 .edited-note {
     font-size: 0.85rem;
     color: #9099aa;
@@ -418,7 +411,9 @@ body::before {
     color: #ffd6b3;
     margin-bottom: 15px;
 }
-.exp-item p { color: #b9c8e0; }
+.exp-item p {
+    color: #b9c8e0;
+}
 hr {
     border: none;
     height: 2px;
@@ -431,7 +426,7 @@ hr {
     font-size: 0.9rem;
     margin-top: 20px;
 }
-/* Светлая тема */
+/* ========== СВЕТЛАЯ ТЕМА ========== */
 body.light-theme {
     background: linear-gradient(0deg, rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
                 url('https://i.imgur.com/SeeuWDt.jpeg') center/cover fixed;
@@ -442,9 +437,15 @@ body.light-theme .side-nav {
     backdrop-filter: blur(8px);
     border-right-color: #d0d7e0;
 }
-body.light-theme .side-nav a { color: #2c3e50; }
-body.light-theme .side-nav a i { color: #c52b3a; }
-body.light-theme .side-nav a:hover { background: #c52b3a20; }
+body.light-theme .side-nav a {
+    color: #2c3e50;
+}
+body.light-theme .side-nav a i {
+    color: #c52b3a;
+}
+body.light-theme .side-nav a:hover {
+    background: #c52b3a20;
+}
 body.light-theme .container {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(8px);
@@ -455,9 +456,15 @@ body.light-theme .clan-icon {
     border-color: #c52b3a;
     box-shadow: 0 0 15px rgba(197, 43, 58, 0.3);
 }
-body.light-theme .clan-icon .icon-svg text { stroke: #cc8844; }
-body.light-theme .clan-icon:hover { box-shadow: 0 0 25px rgba(197, 43, 58, 0.6); }
-body.light-theme .clan-title p { color: #4b5b6c; }
+body.light-theme .clan-icon:hover {
+    box-shadow: 0 0 25px rgba(197, 43, 58, 0.6);
+}
+body.light-theme .clan-icon::after {
+    background: linear-gradient(45deg, transparent, rgba(0,0,0,0.1), transparent);
+}
+body.light-theme .clan-title p {
+    color: #4b5b6c;
+}
 body.light-theme .theme-toggle-btn {
     background: #e9ecef;
     color: #1e2a3a;
@@ -467,13 +474,17 @@ body.light-theme .theme-toggle-btn:hover {
     background: #c52b3a;
     color: white;
 }
-body.light-theme .section-header { border-bottom-color: #e2e8f0; }
+body.light-theme .section-header {
+    border-bottom-color: #e2e8f0;
+}
 body.light-theme .section-icon {
     background: #f1f5f9;
     border-color: #cbd5e1;
     color: #c52b3a;
 }
-body.light-theme .section-header h2 { color: #2c3e50; }
+body.light-theme .section-header h2 {
+    color: #2c3e50;
+}
 body.light-theme .rule-item {
     background: #f9fafb;
     border-left-color: #e2e8f0;
@@ -483,14 +494,20 @@ body.light-theme .rule-item:hover {
     background: #ffffff;
     border-left-color: #c52b3a;
 }
-body.light-theme .rule-text { color: #1e2a3a; }
+body.light-theme .rule-text {
+    color: #1e2a3a;
+}
 body.light-theme .punishment {
     background: #f1f5f9;
     border-left-color: #c52b3a;
     color: #334155;
 }
-body.light-theme .punishment i { color: #c52b3a; }
-body.light-theme .punishment strong { color: #b91c2c; }
+body.light-theme .punishment i {
+    color: #c52b3a;
+}
+body.light-theme .punishment strong {
+    color: #b91c2c;
+}
 body.light-theme .edited-note {
     background: #eef2ff;
     color: #4b5563;
@@ -504,15 +521,23 @@ body.light-theme .exp-item {
     border-top-color: #c52b3a;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
-body.light-theme .exp-item h3 { color: #2c3e50; }
-body.light-theme .exp-item p { color: #4b5563; }
+body.light-theme .exp-item h3 {
+    color: #2c3e50;
+}
+body.light-theme .exp-item p {
+    color: #4b5563;
+}
 body.light-theme hr {
     background: linear-gradient(90deg, #e2e8f0, #c52b3a, #e2e8f0);
 }
-body.light-theme .footer-note { color: #94a3b8; }
-/* Адаптив */
+body.light-theme .footer-note {
+    color: #94a3b8;
+}
+/* ========== АДАПТИВ ========== */
 @media (max-width: 768px) {
-    body { padding-left: 0; }
+    body {
+        padding-left: 0;
+    }
     .side-nav {
         width: auto;
         height: auto;
@@ -532,7 +557,9 @@ body.light-theme .footer-note { color: #94a3b8; }
         padding: 8px 12px;
         box-shadow: 0 -2px 12px rgba(0,0,0,0.3);
     }
-    .side-nav:hover { width: auto; }
+    .side-nav:hover {
+        width: auto;
+    }
     .side-nav ul {
         flex-direction: row;
         padding: 0;
@@ -547,14 +574,22 @@ body.light-theme .footer-note { color: #94a3b8; }
         opacity: 1;
         font-size: 0.8rem;
     }
-    .side-nav a i { font-size: 1rem; }
+    .side-nav a i {
+        font-size: 1rem;
+    }
     .container {
         margin: 20px 12px 80px 12px;
         width: auto;
     }
 }
 @media (max-width: 480px) {
-    .side-nav a span { display: none; }
-    .side-nav a i { margin: 0; }
-    .side-nav a { padding: 8px 12px; }
+    .side-nav a span {
+        display: none;
+    }
+    .side-nav a i {
+        margin: 0;
+    }
+    .side-nav a {
+        padding: 8px 12px;
+    }
 }
