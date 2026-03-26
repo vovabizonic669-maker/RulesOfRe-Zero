@@ -19,6 +19,21 @@ body {
     min-height: 100vh;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 90vmin;
+    height: 90vmin;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(197,43,58,0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: rotateCircle 25s linear reverse;
+    z-index: -1;
+}
+
 /* Анимация фона */
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
